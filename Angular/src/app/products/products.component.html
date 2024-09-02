@@ -1,0 +1,128 @@
+
+    
+
+<div class="row p-1 bg-primary">
+    <div class="col-6">
+        <h3>Products List</h3>
+    </div>
+    <div class="col-6 text-end">
+        <button class="btn btn-warning" (click)="openModal()"> Add Product</button>
+    </div>
+</div>
+
+
+<table class="table table-hover table-striped table-responsive" style="width: 100%;">
+    <thead>
+        <tr>
+         
+          <th scope="col">Product Code</th>
+          <th scope="col">Product Name</th>                 
+          <th scope="col">Product Description</th>
+          <th scope="col">Product Quantity</th>
+          <th scope="col">Product Price</th>
+          <th scope="col">Date Added</th>
+          <th scope="col" class="text-center">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let obj of productList">
+         
+          <td>{{obj.prod_code}}</td>
+          <td>{{obj.prod_name}}</td>
+          <td>{{obj.prod_description}}</td>
+          <td>{{obj.prod_qty}}</td>
+          <td>{{obj.prod_price}}</td>
+          <td>{{obj.prod_dateAdded}}</td>       
+          <td class="text-center"><button class="btn btn-primary" (click)="onEdit(obj)">Edit</button> | <button class="btn btn-danger" (click)="onDelete(obj.prod_id)">Delete</button></td>       
+          </tr>
+      </tbody>
+  </table>
+
+  @if(pageNumber <= 1)
+  {
+    <button class="button button2 disabled" (click)="pagedn()">❮</button>
+  }@else {
+    <button class="button button2" (click)="pagedn()">❮</button>
+  }
+ 
+  <button class="button button2" (click)="pageup()">❯</button>
+
+
+    
+
+
+
+      <div class="modal" id="myModal" #myModal>
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header bg-info">
+                
+            
+
+              
+                <h4 class="modal-title">Products</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+            </div>
+            <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+            <!-- Modal body -->
+            <div class="modal-body">
+              
+                <div class="modal-body">
+
+                    
+
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" formControlName="prod_code" name="code" class="form-control" placeholder="Code">
+                        </div>
+                        
+                        <div class="col-6">
+                            <input type="text" formControlName="prod_name" name="name" class="form-control" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <input type="text" formControlName="prod_description" name="description" class="form-control" placeholder="Description">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <input type="number" formControlName="prod_qty" name="quantity" class="form-control" placeholder="Quantity">
+                        </div>
+
+                        <div class="col-4">
+                            <input type="text" formControlName="prod_status" name="status" class="form-control" placeholder="Status">
+                        </div>
+
+                        <div class="col-4">
+                            <input type="number" formControlName="prod_price" name="price" class="form-control" placeholder="Price">
+                        </div>
+                    </div>
+
+                   
+                </div>
+                
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                @if(productsForm.value.prod_id == 0)
+                {
+                    <button type="submit" [disabled]="this.productsForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                }@else{
+                    <button type="submit" [disabled]="this.productsForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                }
+             
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+           
+            </div>
+             </form>
+          </div>
+        </div>
+      </div>
+

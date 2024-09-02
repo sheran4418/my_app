@@ -1,0 +1,114 @@
+<div class="row p-1 bg-primary">
+  <div class="col-6">
+      <h3>Users List</h3>
+  </div>
+  <div class="col-6 text-end">
+      <button class="btn btn-warning" (click)="openModal()"> Add User</button>
+  </div>
+</div>
+
+
+<table class="table table-hover table-striped table-responsive" style="width: 100%;">
+  <thead>
+      <tr>
+       
+        <th scope="col"> Name</th>
+        <th scope="col"> UserName</th>                 
+        <th scope="col">E-mail</th>
+        <th scope="col">Category</th>
+        <th scope="col">Work-Group</th>       
+        <th scope="col" class="text-center">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let obj of UsersList">
+       
+        <td>{{obj.u_name}}</td>
+        <td>{{obj.username}}</td>
+        <td>{{obj.u_email}}</td>
+        <td>{{obj.u_fname}}</td>
+        <td>{{obj.u_lname}}</td>           
+        <td class="text-center"><button class="btn btn-primary" (click)="onEdit(obj)">Edit</button> | <button class="btn btn-danger" (click)="onDelete(obj.user_id)">Delete</button></td>       
+        </tr>
+    </tbody>
+</table>
+
+@if(pageNumber <= 1)
+{
+  <button class="button button2 disabled" (click)="pagedn()">❮</button>
+}@else {
+  <button class="button button2" (click)="pagedn()">❮</button>
+}
+
+<button class="button button2" (click)="pageup()">❯</button>
+
+<div class="modal" id="myModal" #myModal>
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-info">
+          
+      
+
+        
+          <h4 class="modal-title">Products</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+      </div>
+      <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+          <div class="modal-body">
+
+              
+              <div class="row">
+                  <div class="col-6">
+                      <input type="text" formControlName="u_name" name="u_name" class="form-control" placeholder="Name">
+                  </div>
+                  
+                  <div class="col-6">
+                      <input type="text" formControlName="username" name="username" class="form-control" placeholder="UserName">
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                  <div class="col-12">
+                      <input type="email" formControlName="u_email" name="u_email" class="form-control" placeholder="E-Mail">
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                  <div class="col-6">
+                      <input type="text" formControlName="u_fname" name="u_fname" class="form-control" placeholder="Category">
+                  </div>
+
+                  <div class="col-6">
+                      <input type="text" formControlName="u_lname" name="u_lname" class="form-control" placeholder="Workgroup">
+                  </div>
+
+               
+              </div>
+
+             
+          </div>
+          
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          @if(usersForm.value.user_id == 0)
+          {
+              <button type="submit" [disabled]="this.usersForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+          }@else{
+              <button type="submit" [disabled]="this.usersForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+          }
+       
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+     
+      </div>
+       </form>
+    </div>
+  </div>
+</div>

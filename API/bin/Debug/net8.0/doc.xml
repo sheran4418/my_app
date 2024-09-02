@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>My_Api</name>
+    </assembly>
+    <members>
+        <member name="M:My_Api.Controllers.ProductsController.Get(Bn_API.Helpers.QueryObject)">
+            <summary>
+            Get all Products, requires token, (?PageNumber=x, PageSize=x for pagination default page size - 20)
+            </summary>
+        </member>
+        <member name="M:My_Api.Controllers.UsersController.Get(Bn_API.Helpers.QueryObject)">
+            <summary>
+            Get all users, requires token, (?PageNumber=x, PageSize=x for pagination default page size - 20)
+            </summary>
+        </member>
+        <member name="T:My_Api.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:My_Api.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:My_Api.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:My_Api.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

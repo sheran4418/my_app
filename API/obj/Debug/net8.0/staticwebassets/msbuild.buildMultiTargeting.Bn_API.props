@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Bn_API.props" />
+</Project>
